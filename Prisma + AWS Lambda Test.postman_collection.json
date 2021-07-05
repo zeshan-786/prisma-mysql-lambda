@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "e607744b-e974-494a-bd53-1f8ccb8bfa42",
+		"name": "Prisma + AWS Lambda Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create WaitList",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Zeshan Mehmood\",\n    \"email\": \"zeshan@gmail.com\",\n    \"website\": \"zee.com\",\n    \"phone\": \"+923089299756\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://bmxk7ieq24.execute-api.us-east-1.amazonaws.com/dev/waitlist/create",
+					"protocol": "https",
+					"host": [
+						"bmxk7ieq24",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"waitlist",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Has waitList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bmxk7ieq24.execute-api.us-east-1.amazonaws.com/dev/waitlist/has?email=zeshan1@gmail.com",
+					"protocol": "https",
+					"host": [
+						"bmxk7ieq24",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"waitlist",
+						"has"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "zeshan1@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bmxk7ieq24.execute-api.us-east-1.amazonaws.com/dev/",
+					"protocol": "https",
+					"host": [
+						"bmxk7ieq24",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

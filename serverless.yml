@@ -1,0 +1,58 @@
+service: prisma-aws-lambda-test
+useDotenv: true
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs12.x
+
+functions:
+  status:
+    handler: handlers/status.handler
+    events:
+      - http:
+          method: GET
+          path: /
+  createWaitList:
+    handler: handlers/wait-list.create
+    events:
+      - http:
+          method: POST
+          path: /waitlist/create
+  hasWaitList:
+    handler: handlers/wait-list.has
+    events:
+      - http:
+          method: GET
+          path: /waitlist/has
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+# only include the Prisma binary required on AWS Lambda while packaging
+package:
+  include: # Specify the directories and files which should be included in the deployment package
+    - handlers/**
+    - prisma/**
+    - node_modules
+    - '!node_modules/.prisma/client/query-engine-darwin'
+    - '!node_modules/.prisma/client/query-engine-debian-openssl-1.1.x'
+    - '!node_modules/@types/**'
+    - '!node_modules/@prisma/cli/introspection-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/cli/introspection-engine-darwin'
+    - '!node_modules/@prisma/cli/migration-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/cli/migration-engine-darwin'
+    - '!node_modules/@prisma/cli/prisma-fmt-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/cli/prisma-fmt-darwin'
+    - '!node_modules/@prisma/cli/query-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/cli/query-engine-darwin'
+    - '!node_modules/@prisma/sdk/prisma-fmt-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/sdk/prisma-fmt-darwin'
+    - '!node_modules/@prisma/sdk/migration-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/sdk/migration-engine-darwin'
+    - '!node_modules/@prisma/sdk/introspection-engine-darwin'
+    - '!node_modules/@prisma/sdk/introspection-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/sdk/query-engine-debian-openssl-1.1.x'
+    - '!node_modules/@prisma/sdk/query-engine-darwin'
+    - '!node_modules/aws-sdk/**'
