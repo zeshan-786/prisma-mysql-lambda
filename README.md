@@ -28,3 +28,7 @@ sls offline start
 ```
 
 You'll find the endpoints on [localhost:3000](http://localhost:3000)
+
+
+## Postman tests
+You can find postman collection file in prisma-mysql-lambda/postman_collection
